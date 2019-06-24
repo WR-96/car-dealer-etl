@@ -1,0 +1,18 @@
+.header.bg-primary
+  %nav#navbar-main.navbar.navbar-default.navbar-expand-md.navbar-dark
+    .container-fluid
+      %h2.mb-0.text-white.text-uppercase.d-none.d-lg-inline-block 
+        = yield(:title)
+      %ul.navbar-nav.align-items-center.d-none.d-md-flex
+        %li.nav-item.dropdown
+          %a.nav-link.dropdown-toggle{"aria-expanded" => "false", 
+                           "aria-haspopup" => "true",
+                           "data-toggle" => "dropdown", 
+                           :href => "#", :role => "button"}
+            %span.mb-0.text-sm.font-weight-bold= current_user.email 
+          .dropdown-menu.dropdown-menu-arrow.dropdown-menu-right
+            =link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
+              %i.ni.ni-settings-gear-65
+                %span Salir
+                
+

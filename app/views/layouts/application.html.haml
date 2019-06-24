@@ -2,10 +2,19 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title CarDealer
+    %title Car Dealer
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    = render partial: 'layouts/side_bar'
+    .main-content
+      = render partial: 'layouts/header'
+
+      = render partial: 'layouts/flash_messages'
+
+      .container-fluid.mt-3
+        = yield
+
+        = render partial: 'layouts/footer'

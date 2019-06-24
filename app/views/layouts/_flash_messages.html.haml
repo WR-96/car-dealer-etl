@@ -1,0 +1,18 @@
+.row.justify-content-md-center.fixed-top
+  .col-8
+    - flash.each do |key, value|
+      - if key == 'notice'
+        %div{:class => "alert alert-success alert-dismissable fade show mt-4", role: "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          = value
+      - elsif key == 'alert'
+        %div{:class => "alert alert-danger alert-dismissable fade show mt-4", role: "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          = value
+      - else
+        %div{:class => "alert alert-#{key} alert-dismissable fade show mt-4", role: "alert"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          = value
