@@ -1,0 +1,30 @@
+.container
+  .row.justify-content-center.mt-5
+    .col-lg-5.col-md-7
+      .card.shadow.border-0
+        .card-header
+          %h2.card-title.text-center Iniciar Sesión
+        .card-body.px-lg-5.py-lg-5
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+              .input-group
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.fa.fa-envelope
+                = f.email_field :email, autofocus: true, autocomplete: "email",
+                                class: "form-control", placeholder: "Email"
+            .form-group
+              .input-group.input-group-alternative
+                .input-group-prepend
+                  %span.input-group-text
+                    %i.fa.fa-lock
+                = f.password_field :password, autocomplete: "current-password",
+                                   class: "form-control", placeholder: "Contraseña"
+            - if devise_mapping.rememberable?
+              .custom-control.custom-checkbox
+                = f.check_box :remember_me, class: "custom-control-input", id: 'remember_me'
+                = f.label :recuerdame, class: "custom-control-label", for: 'remember_me'
+            .actions.text-center
+              = f.submit "Iniciar sesión", class: "btn btn-primary my-4"
+          .row.mt-3
+            = render "devise/shared/links"
