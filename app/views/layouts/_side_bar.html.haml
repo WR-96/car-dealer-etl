@@ -1,8 +1,8 @@
-%nav#sidenav-main.navbar.navbar-vertical.fixed-left.navbar-expand-md.navbar-light.bg-white
-  .container-fluid
-    #sidenav-collapse-main.collapse.navbar-collapse
-      %ul.navbar-nav
-        %li.nav-item
-          = link_to root_path, class: 'nav-link' do
-            %i.fas.fa-tachometer-alt.text-blue
-            Dashboard
+.bg-light.border-right#sidebar-wrapper
+  .sidebar-heading Menu
+  .list-group.list-group-flush
+    = link_to root_path, class: 'list-group-item list-group-item-action' do
+      %i.fas.fa-home.text-blue
+        Home
+
+  
