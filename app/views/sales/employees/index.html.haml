@@ -1,0 +1,24 @@
+%h1 Listing Employees
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Last name
+        %th Phone
+        %th Email
+        %th
+        %th
+
+    %tbody
+      - @sales_employees.each do |sales_employee|
+        %tr
+          %td= sales_employee.name
+          %td= sales_employee.last_name
+          %td= sales_employee.phone
+          %td= sales_employee.email
+          %td= link_to 'Edit', edit_sales_employee_path(sales_employee)
+          %td= link_to 'Destroy', sales_employee, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
