@@ -13,6 +13,7 @@
                                   aria: {haspopup: true, expanded: false} }
         .dropdown-menu{'aria-labelledby': 'salesDropdown'}
           = link_to 'Employees', sales_employees_path, class: 'dropdown-item'
+          = link_to 'Addresses', sales_addresses_path, class: 'dropdown-item'
     %ul.navbar-nav
       %li.nav-item.dropdown
         %a.nav-link.dropdown-toggle{ href: '#', role: 'button', 'data-toggle': 'dropdown',
