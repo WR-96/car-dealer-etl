@@ -1,0 +1,34 @@
+%h1 Listing Cars
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Model
+        %th Category
+        %th Maker
+        %th Color
+        %th Year
+        %th Price
+        %th Miles
+        %th Serial number
+        %th Purchase date
+        %th
+        %th
+
+    %tbody
+      - @sales_cars.each do |sales_car|
+        %tr
+          %td= sales_car.model
+          %td= sales_car.category
+          %td= sales_car.maker
+          %td= sales_car.color
+          %td= sales_car.year
+          %td= sales_car.price
+          %td= sales_car.miles
+          %td= sales_car.serial_number
+          %td= sales_car.purchase_date
+          %td= link_to 'Edit', edit_sales_car_path(sales_car)
+          %td= link_to 'Destroy', sales_car, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
