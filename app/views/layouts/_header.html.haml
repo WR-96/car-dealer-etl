@@ -1,28 +1,23 @@
-.header.bg-primary
-  %nav#navbar-main.navbar.navbar-default.navbar-expand-md.navbar-dark
-    .container-fluid
-      %h2.mb-0.text-white.text-uppercase.d-none.d-lg-inline-block.navbar-brand
-        Car Dealer
-      %ul.navbar-nav
-        %li.nav-time.active
-          = link_to root_path, class: 'nav-link active' do
-            %i.fas.fa-home.text-blue
-              Home
-        %li.nav-item.dropdown
-          = link_to 'Sales', '#', {id: 'salesDropdown', class: 'nav-link dropdown-toggle',
-            role: 'button', 'data-toggle': 'dropdown', aria: {haspopup: true, expanded: false} }
-          .dropdown-menu{'aria-labelledby': 'salesDropdown'}
-            = link_to 'Employees', sales_employees_path, class: 'dropdown-item'
-      %ul.navbar-nav.align-items-center.d-none.d-md-flex
-        %li.nav-item.dropdown
-          %a.nav-link.dropdown-toggle{"aria-expanded" => "false", 
-                           "aria-haspopup" => "true",
-                           "data-toggle" => "dropdown", 
-                           :href => "#", :role => "button"}
-            %span.mb-0.text-sm.font-weight-bold= current_user.email 
-          .dropdown-menu.dropdown-menu-arrow.dropdown-menu-right
-            =link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
-              %i.fas.fa-sign-out-alt
-                Log out
-                
-
+.header
+  %nav#navbar-main.navbar.navbar-expand-md.navbar-dark.bg-dark
+    %h2.navbar-brand.mb-0
+      Car Dealer
+    %ul.navbar-nav.mr-auto
+      %li.nav-time.active
+        = link_to root_path, class: 'nav-link active' do
+          %i.fas.fa-home
+            Home
+      %li.nav-item.dropdown
+        = link_to 'Sales', '#', { id: 'salesDropdown', class: 'nav-link dropdown-toggle',
+                                  role: 'button', 'data-toggle': 'dropdown',
+                                  aria: {haspopup: true, expanded: false} }
+        .dropdown-menu{'aria-labelledby': 'salesDropdown'}
+          = link_to 'Employees', sales_employees_path, class: 'dropdown-item'
+    %ul.navbar-nav
+      %li.nav-item.dropdown
+        %a.nav-link.dropdown-toggle{ href: '#', role: 'button', 'data-toggle': 'dropdown',
+                                     aria: { expanded: false, haspopup: true } }
+          %span= current_user.email
+        .dropdown-menu
+          =link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
+            %i.fas.fa-sign-out-alt~ " Log out"
