@@ -1,0 +1,30 @@
+%h1 Listing Deals
+
+.table-resposive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Client name
+        %th Agent name
+        %th Car
+        %th Price
+        %th Date
+        %th Monthly payment
+        %th Payment due day
+        %th
+        %th
+
+    %tbody
+      - @sales_deals.each do |sales_deal|
+        %tr
+          %td= sales_deal.client_name
+          %td= sales_deal.agent_name
+          %td= sales_deal.car
+          %td= sales_deal.price
+          %td= sales_deal.date
+          %td= sales_deal.monthly_payment
+          %td= sales_deal.payment_due_day
+          %td= link_to 'Edit', edit_sales_deal_path(sales_deal)
+          %td= link_to 'Destroy', sales_deal, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
