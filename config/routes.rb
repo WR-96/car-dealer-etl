@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :workshop do
+    resources :clients, except: %i[new show]
+  end
+
   namespace :sales do
     resources :clients, except: %i[new show]
     resources :payments, except: %i[new show]

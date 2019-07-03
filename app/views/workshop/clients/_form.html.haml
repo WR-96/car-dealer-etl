@@ -1,0 +1,25 @@
+= form_for @workshop_client do |f|
+  - if @workshop_client.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@workshop_client.errors.count, "error")} prohibited this workshop_client from being saved:"
+      %ul
+        - @workshop_client.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :cellphone
+    = f.text_field :cellphone
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :rfc
+    = f.text_field :rfc
+  .actions
+    = f.submit 'Save'
