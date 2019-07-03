@@ -1,0 +1,25 @@
+= form_for @sales_client do |f|
+  - if @sales_client.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@sales_client.errors.count, "error")} prohibited this sales_client from being saved:"
+      %ul
+        - @sales_client.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :cellphone
+    = f.text_field :cellphone
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :rfc
+    = f.text_field :rfc
+  .actions
+    = f.submit 'Save'

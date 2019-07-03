@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :sales do
+    resources :clients, except: %i[new show]
     resources :payments, except: %i[new show]
     resources :bills, except: %i[new show]
     resources :deals, except: %i[new show]
