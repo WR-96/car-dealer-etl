@@ -1,0 +1,28 @@
+%h1 Listing Bills
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Deal number
+        %th Date
+        %th Sub total
+        %th Tax percentage
+        %th Tax
+        %th Total
+        %th
+        %th
+
+    %tbody
+      - @sales_bills.each do |sales_bill|
+        %tr
+          %td= sales_bill.deal_number
+          %td= sales_bill.date
+          %td= sales_bill.sub_total
+          %td= sales_bill.tax_percentage
+          %td= sales_bill.tax
+          %td= sales_bill.total
+          %td= link_to 'Edit', edit_sales_bill_path(sales_bill)
+          %td= link_to 'Destroy', sales_bill, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
