@@ -1,0 +1,32 @@
+%h1 Listing Tests Drive
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Client name
+        %th Agent name
+        %th Car
+        %th Date
+        %th Hour
+        %th License number
+        %th Inital miles
+        %th Final miles
+        %th
+        %th
+
+    %tbody
+      - @sales_test_drives.each do |sales_test_drive|
+        %tr
+          %td= sales_test_drive.client_name
+          %td= sales_test_drive.agent_name
+          %td= sales_test_drive.car
+          %td= sales_test_drive.date
+          %td= sales_test_drive.hour
+          %td= sales_test_drive.license_number
+          %td= sales_test_drive.inital_miles
+          %td= sales_test_drive.final_miles
+          %td= link_to 'Edit', edit_sales_test_drife_path(sales_test_drive)
+          %td= link_to 'Destroy', sales_test_drive, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
