@@ -1,0 +1,22 @@
+= form_for @workshop_piece do |f|
+  - if @workshop_piece.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@workshop_piece.errors.count, "error")} prohibited this workshop_piece from being saved:"
+      %ul
+        - @workshop_piece.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :car
+    = f.text_field :car
+  .field
+    = f.label :maker
+    = f.text_field :maker
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :price
+    = f.text_field :price
+  .actions
+    = f.submit 'Save'
