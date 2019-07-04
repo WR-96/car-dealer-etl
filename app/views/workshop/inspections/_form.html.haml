@@ -1,0 +1,28 @@
+= form_for @workshop_inspection do |f|
+  - if @workshop_inspection.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@workshop_inspection.errors.count, "error")} prohibited this workshop_inspection from being saved:"
+      %ul
+        - @workshop_inspection.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :car
+    = f.text_field :car
+  .field
+    = f.label :mechanic_name
+    = f.text_field :mechanic_name
+  .field
+    = f.label :date
+    = f.text_field :date
+  .field
+    = f.label :mileage
+    = f.text_field :mileage
+  .field
+    = f.label :fuel_level
+    = f.text_field :fuel_level
+  .field
+    = f.label :comment
+    = f.text_field :comment
+  .actions
+    = f.submit 'Save'

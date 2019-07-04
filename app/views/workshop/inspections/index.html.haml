@@ -1,0 +1,28 @@
+%h1 Listing Inspections
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Car
+        %th Mechanic name
+        %th Date
+        %th Mileage
+        %th Fuel level
+        %th Comment
+        %th
+        %th
+
+    %tbody
+      - @workshop_inspections.each do |workshop_inspection|
+        %tr
+          %td= workshop_inspection.car
+          %td= workshop_inspection.mechanic_name
+          %td= workshop_inspection.date
+          %td= workshop_inspection.mileage
+          %td= workshop_inspection.fuel_level
+          %td= workshop_inspection.comment
+          %td= link_to 'Edit', edit_workshop_inspection_path(workshop_inspection)
+          %td= link_to 'Destroy', workshop_inspection, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
