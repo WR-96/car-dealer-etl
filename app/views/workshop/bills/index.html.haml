@@ -1,0 +1,28 @@
+%h1 Listing Bills
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Client name
+        %th Date
+        %th Sub total
+        %th Tax percentage
+        %th Tax amount
+        %th Total
+        %th
+        %th
+
+    %tbody
+      - @workshop_bills.each do |workshop_bill|
+        %tr
+          %td= workshop_bill.client_name
+          %td= workshop_bill.date
+          %td= workshop_bill.sub_total
+          %td= workshop_bill.tax_percentage
+          %td= workshop_bill.tax_amount
+          %td= workshop_bill.total
+          %td= link_to 'Edit', edit_workshop_bill_path(workshop_bill)
+          %td= link_to 'Destroy', workshop_bill, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
