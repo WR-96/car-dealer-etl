@@ -1,0 +1,24 @@
+%h1 Listing Mechanics
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Phone
+        %th Cellphone
+        %th Email
+        %th
+        %th
+
+    %tbody
+      - @workshop_mechanics.each do |workshop_mechanic|
+        %tr
+          %td= workshop_mechanic.name
+          %td= workshop_mechanic.phone
+          %td= workshop_mechanic.cellphone
+          %td= workshop_mechanic.email
+          %td= link_to 'Edit', edit_workshop_mechanic_path(workshop_mechanic)
+          %td= link_to 'Destroy', workshop_mechanic, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
