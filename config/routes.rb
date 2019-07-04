@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :workshop do
+    resources :bookings, except: %i[new show]
     resources :cars, except: %i[new show]
     resources :clients, except: %i[new show]
   end
