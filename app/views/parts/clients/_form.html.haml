@@ -1,0 +1,25 @@
+= form_for @parts_client do |f|
+  - if @parts_client.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@parts_client.errors.count, "error")} prohibited this parts_client from being saved:"
+      %ul
+        - @parts_client.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :cellphone
+    = f.text_field :cellphone
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :rfc
+    = f.text_field :rfc
+  .actions
+    = f.submit 'Save'

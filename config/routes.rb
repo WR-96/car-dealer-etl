@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  namespace :parts do
+    resources :clients, except: %i[new show]
+  end
+
   namespace :workshop do
     resources :inspection_points, except: %i[new show]
     resources :inspections, except: %i[new show]

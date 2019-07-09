@@ -34,6 +34,13 @@
           = link_to 'Bills', workshop_bills_path, class: 'dropdown-item'
           = link_to 'Inspections', workshop_inspections_path, class: 'dropdown-item'
           = link_to 'Inspection Points', workshop_inspection_points_path, class: 'dropdown-item'
+      %li.nav-item.dropdown
+        = link_to 'Parts', '#', { id: 'workshopDropdown', class: 'nav-link dropdown-toggle',
+                                  role: 'button', 'data-toggle': 'dropdown',
+                                  aria: {haspopup: true, expanded: false} }
+        .dropdown-menu{'aria-labelledby': 'partsDropdown'}
+          = link_to 'Clients', parts_clients_path, class: 'dropdown-item'
+
     %ul.navbar-nav
       %li.nav-item.dropdown
         %a.nav-link.dropdown-toggle{ href: '#', role: 'button', 'data-toggle': 'dropdown',

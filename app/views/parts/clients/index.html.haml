@@ -1,0 +1,26 @@
+%h1 Listing Clients
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Phone
+        %th Cellphone
+        %th Email
+        %th Rfc
+        %th
+        %th
+
+    %tbody
+      - @parts_clients.each do |parts_client|
+        %tr
+          %td= parts_client.name
+          %td= parts_client.phone
+          %td= parts_client.cellphone
+          %td= parts_client.email
+          %td= parts_client.rfc
+          %td= link_to 'Edit', edit_parts_client_path(parts_client)
+          %td= link_to 'Destroy', parts_client, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
