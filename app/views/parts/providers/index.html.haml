@@ -1,0 +1,30 @@
+%h1 Listing Providers
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Tradename
+        %th Phone
+        %th Cellphone
+        %th Email
+        %th Car maker
+        %th Piece
+        %th Price
+        %th
+        %th
+
+    %tbody
+      - @parts_providers.each do |parts_provider|
+        %tr
+          %td= parts_provider.tradename
+          %td= parts_provider.phone
+          %td= parts_provider.cellphone
+          %td= parts_provider.email
+          %td= parts_provider.car_maker
+          %td= parts_provider.piece
+          %td= parts_provider.price
+          %td= link_to 'Edit', edit_parts_provider_path(parts_provider)
+          %td= link_to 'Destroy', parts_provider, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
