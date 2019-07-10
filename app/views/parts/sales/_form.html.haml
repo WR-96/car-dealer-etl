@@ -1,0 +1,25 @@
+= form_for @parts_sale do |f|
+  - if @parts_sale.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@parts_sale.errors.count, "error")} prohibited this parts_sale from being saved:"
+      %ul
+        - @parts_sale.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :client_name
+    = f.text_field :client_name
+  .field
+    = f.label :employee_name
+    = f.text_field :employee_name
+  .field
+    = f.label :date
+    = f.text_field :date
+  .field
+    = f.label :amount
+    = f.text_field :amount
+  .field
+    = f.label :total
+    = f.text_field :total
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,26 @@
+%h1 Listing Sales
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Client name
+        %th Employee name
+        %th Date
+        %th Amount
+        %th Total
+        %th
+        %th
+
+    %tbody
+      - @parts_sales.each do |parts_sale|
+        %tr
+          %td= parts_sale.client_name
+          %td= parts_sale.employee_name
+          %td= parts_sale.date
+          %td= parts_sale.amount
+          %td= parts_sale.total
+          %td= link_to 'Edit', edit_parts_sale_path(parts_sale)
+          %td= link_to 'Destroy', parts_sale, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
