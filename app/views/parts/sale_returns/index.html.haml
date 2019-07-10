@@ -1,0 +1,26 @@
+%h1 Listing Sale Returns
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Client name
+        %th Date
+        %th Article
+        %th Refound
+        %th Comment
+        %th
+        %th
+
+    %tbody
+      - @parts_sale_returns.each do |parts_sale_return|
+        %tr
+          %td= parts_sale_return.client_name
+          %td= parts_sale_return.date
+          %td= parts_sale_return.article
+          %td= parts_sale_return.refound
+          %td= parts_sale_return.comment
+          %td= link_to 'Edit', edit_parts_sale_return_path(parts_sale_return)
+          %td= link_to 'Destroy', parts_sale_return, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
