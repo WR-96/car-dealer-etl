@@ -1,0 +1,28 @@
+%h1 Listing Spare Parts
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Description
+        %th Car model
+        %th Car maker
+        %th Price
+        %th Stock
+        %th Reorder
+        %th
+        %th
+
+    %tbody
+      - @parts_spare_parts.each do |parts_spare_part|
+        %tr
+          %td= parts_spare_part.description
+          %td= parts_spare_part.car_model
+          %td= parts_spare_part.car_maker
+          %td= parts_spare_part.price
+          %td= parts_spare_part.stock
+          %td= parts_spare_part.reorder
+          %td= link_to 'Edit', edit_parts_spare_part_path(parts_spare_part)
+          %td= link_to 'Destroy', parts_spare_part, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
