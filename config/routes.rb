@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   namespace :parts do
+    resources :supplier_orders, except: %i[new show]
     resources :provider_returns, except: %i[new show]
     resources :sale_returns, except: %i[new show]
     resources :providers, except: %i[new show]

@@ -1,0 +1,32 @@
+%h1 Listing Supplier Orders
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Employee name
+        %th Date
+        %th Supplier tradename
+        %th Status
+        %th Delivery date
+        %th Article
+        %th Amount
+        %th Total
+        %th
+        %th
+
+    %tbody
+      - @parts_supplier_orders.each do |parts_supplier_order|
+        %tr
+          %td= parts_supplier_order.employee_name
+          %td= parts_supplier_order.date
+          %td= parts_supplier_order.supplier_tradename
+          %td= parts_supplier_order.status
+          %td= parts_supplier_order.delivery_date
+          %td= parts_supplier_order.article
+          %td= parts_supplier_order.amount
+          %td= parts_supplier_order.total
+          %td= link_to 'Edit', edit_parts_supplier_order_path(parts_supplier_order)
+          %td= link_to 'Destroy', parts_supplier_order, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
