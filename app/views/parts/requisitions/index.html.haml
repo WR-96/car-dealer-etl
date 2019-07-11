@@ -1,0 +1,28 @@
+%h1 Listing Requisitions
+
+.table-responsive
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Employee name
+        %th Date
+        %th Status
+        %th Delivery date
+        %th Article
+        %th Amount
+        %th
+        %th
+
+    %tbody
+      - @parts_requisitions.each do |parts_requisition|
+        %tr
+          %td= parts_requisition.employee_name
+          %td= parts_requisition.date
+          %td= parts_requisition.status
+          %td= parts_requisition.delivery_date
+          %td= parts_requisition.article
+          %td= parts_requisition.amount
+          %td= link_to 'Edit', edit_parts_requisition_path(parts_requisition)
+          %td= link_to 'Destroy', parts_requisition, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
