@@ -34,8 +34,8 @@ module Sales
     end
 
     def sales_bill_params
-      params.require(:sales_bill).permit(:deal_number, :date, :sub_total, :total, :tax_percentage,
-                                         :tax)
+      params.require(:sales_bill).permit(:client_name, :rfc, :date, :sub_total, :total,
+                                         :tax_percentage, :tax)
     end
   end
 end

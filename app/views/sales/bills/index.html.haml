@@ -4,7 +4,8 @@
   %table.table.table-hover
     %thead
       %tr
-        %th Deal number
+        %th Client name
+        %th RFC
         %th Date
         %th Sub total
         %th Tax percentage
@@ -16,7 +17,8 @@
     %tbody
       - @sales_bills.each do |sales_bill|
         %tr
-          %td= sales_bill.deal_number
+          %td= sales_bill.client_name
+          %td= sales_bill.rfc
           %td= sales_bill.date
           %td= sales_bill.sub_total
           %td= sales_bill.tax_percentage

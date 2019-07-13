@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_11_190454) do
+ActiveRecord::Schema.define(version: 2019_07_13_202817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 2019_07_11_190454) do
   end
 
   create_table "sales_bills", force: :cascade do |t|
-    t.string "deal_number"
     t.string "date"
     t.string "sub_total"
     t.string "total"
@@ -142,6 +141,8 @@ ActiveRecord::Schema.define(version: 2019_07_11_190454) do
     t.string "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "client_name"
+    t.string "rfc"
   end
 
   create_table "sales_cars", force: :cascade do |t|
