@@ -34,8 +34,8 @@ module Sales
     end
 
     def sales_payment_params
-      params.require(:sales_payment).permit(:client_name, :deal_number, :status, :due_date,
-                                            :payment_date, :amount)
+      params.require(:sales_payment).permit(:client_name, :status, :due_date, :payment_date,
+                                            :amount)
     end
   end
 end

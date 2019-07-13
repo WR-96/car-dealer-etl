@@ -5,7 +5,6 @@
     %thead
       %tr
         %th Client name
-        %th Deal number
         %th Status
         %th Due date
         %th Payment date
@@ -17,7 +16,6 @@
       - @sales_payments.each do |sales_payment|
         %tr
           %td= sales_payment.client_name
-          %td= sales_payment.deal_number
           %td= sales_payment.status
           %td= sales_payment.due_date
           %td= sales_payment.payment_date
