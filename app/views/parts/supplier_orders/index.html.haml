@@ -10,6 +10,7 @@
         %th Status
         %th Delivery date
         %th Article
+        %th Price
         %th Amount
         %th Total
         %th
@@ -24,6 +25,7 @@
           %td= parts_supplier_order.status
           %td= parts_supplier_order.delivery_date
           %td= parts_supplier_order.article
+          %td= parts_supplier_order.price
           %td= parts_supplier_order.amount
           %td= parts_supplier_order.total
           %td= link_to 'Edit', edit_parts_supplier_order_path(parts_supplier_order)
