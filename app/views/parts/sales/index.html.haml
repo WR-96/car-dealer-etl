@@ -7,6 +7,8 @@
         %th Client name
         %th Employee name
         %th Date
+        %th Product
+        %th Price
         %th Amount
         %th Total
         %th
@@ -18,6 +20,8 @@
           %td= parts_sale.client_name
           %td= parts_sale.employee_name
           %td= parts_sale.date
+          %td= parts_sale.product
+          %td= parts_sale.price
           %td= parts_sale.amount
           %td= parts_sale.total
           %td= link_to 'Edit', edit_parts_sale_path(parts_sale)
