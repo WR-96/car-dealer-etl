@@ -4,8 +4,9 @@
   %table.table.table-hover
     %thead
       %tr
-        %th Client name
         %th Date
+        %th Client name
+        %th RFC
         %th Sub total
         %th Tax percentage
         %th Tax amount
@@ -16,8 +17,9 @@
     %tbody
       - @workshop_bills.each do |workshop_bill|
         %tr
-          %td= workshop_bill.client_name
           %td= workshop_bill.date
+          %td= workshop_bill.client_name
+          %td= workshop_bill.rfc
           %td= workshop_bill.sub_total
           %td= workshop_bill.tax_percentage
           %td= workshop_bill.tax_amount
