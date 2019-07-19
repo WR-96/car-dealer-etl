@@ -2,6 +2,9 @@
 
 namespace :populate_sales do
   require 'faker'
+
+  task all:  %i[employees clients addresses cars test_drives bills payments deals]
+
   task employees: :environment do
 
     200.times do
@@ -123,6 +126,5 @@ namespace :populate_sales do
       )
     end
   end
-  task all:  %i[employees clients addresses cars test_drives bills payments deals] do; end
 
 end

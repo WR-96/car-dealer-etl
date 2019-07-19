@@ -3,6 +3,9 @@
 namespace :populate_parts do
   require 'faker'
 
+  task all: %i[clients employees sales bills spare_parts providers sale_returns provider_returns
+               supplier_orders requisitions]
+
   task clients: :environment do
     200.times do
       name = Faker::Name.name

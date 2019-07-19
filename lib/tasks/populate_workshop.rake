@@ -3,6 +3,8 @@
 namespace :populate_workshop do
   require 'faker'
 
+  task all: %i[clients cars bookings pieces mechanics repairs bills inspections]
+
   task clients: :environment do
     200.times do
       name = Faker::Name.name
