@@ -6,7 +6,7 @@ namespace :populate_workshop do
   task all: %i[clients cars bookings pieces mechanics repairs bills inspections]
 
   task clients: :environment do
-    200.times do
+    250.times do
       name = Faker::Name.name
       Workshop::Client.create(
         name: name,
@@ -19,7 +19,7 @@ namespace :populate_workshop do
   end
 
   task cars: :environment do
-    200.times do
+    250.times do
       maker = Faker::Vehicle.make
       Workshop::Car.create(
         client_name: Faker::Name.name,
@@ -34,7 +34,7 @@ namespace :populate_workshop do
   end
 
   task bookings: :environment do
-    200.times do
+    250.times do
       hour = (9..19).to_a
       minute = (15..45).step(15).to_a
 
@@ -50,7 +50,7 @@ namespace :populate_workshop do
   end
 
   task pieces: :environment do
-    200.times do
+    250.times do
       maker = Faker::Vehicle.make
       Workshop::Piece.create(
         car: Faker::Vehicle.model(maker),
@@ -62,7 +62,7 @@ namespace :populate_workshop do
   end
 
   task mechanics: :environment do
-    200.times do
+    250.times do
       name = Faker::Name.name
       Workshop::Mechanic.create(
         name: name,
@@ -74,7 +74,7 @@ namespace :populate_workshop do
   end
 
   task repairs: :environment do
-    200.times do
+    250.times do
       Workshop::Repair.create(
         date: Faker::Date.between(5.years.ago, Date.today),
         mechanic_name: Faker::Name.name,
@@ -86,7 +86,7 @@ namespace :populate_workshop do
   end
 
   task bills: :environment do
-    200.times do
+    250.times do
       subtotal = Faker::Commerce.price(range = 100_000.0..500_000.0)
       tax_percentage = 15
       tax_amount = (subtotal * tax_percentage) / 100
@@ -105,7 +105,7 @@ namespace :populate_workshop do
 
   task inspections: :environment do
     fuel_levels = %w[reserve low quarter medium high full]
-    200.times do
+    250.times do
       Workshop::Inspection.create(
         car: Faker::Vehicle.make_and_model,
         mechanic_name: Faker::Name.name,

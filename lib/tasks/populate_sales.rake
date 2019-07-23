@@ -7,7 +7,7 @@ namespace :populate_sales do
 
   task employees: :environment do
 
-    200.times do
+    250.times do
       name = Faker::Name.first_name
       last_name = Faker::Name.last_name 
       Sales::Employee.create(
@@ -20,7 +20,7 @@ namespace :populate_sales do
   end
 
   task clients: :environment do
-    200.times do
+    250.times do
       name = Faker::Name.name
       Sales::Client.create(
         name: name,
@@ -33,7 +33,7 @@ namespace :populate_sales do
   end
 
   task addresses: :environment do
-    200.times do
+    250.times do
       Sales::Address.create(
         client_name: Faker::Name.name,
         address_line: Faker::Address.street_address,
@@ -46,7 +46,7 @@ namespace :populate_sales do
   end
 
   task cars: :environment do
-    200.times do
+    250.times do
       maker = Faker::Vehicle.make
       Sales::Car.create(
         model: Faker::Vehicle.model(maker),
@@ -66,7 +66,7 @@ namespace :populate_sales do
     hour = (9..19).to_a
     minute = (15..45).step(15).to_a
 
-    200.times do
+    250.times do
       initial_miles = Faker::Vehicle.mileage(50_000)
       Sales::TestDrive.create(
         client_name: Faker::Name.name,
@@ -82,7 +82,7 @@ namespace :populate_sales do
   end
 
   task deals: :environment do
-    200.times do
+    250.times do
       Sales::Deal.create(
         client_name: Faker::Name.name,
         agent_name: Faker::Name.name,
@@ -96,7 +96,7 @@ namespace :populate_sales do
   end
 
   task bills: :environment do
-    200.times do
+    250.times do
       subtotal = Faker::Commerce.price(range = 100_000.0..500_000.0)
       tax_percentage = 15
       tax_amount = (subtotal * tax_percentage) / 100
@@ -116,7 +116,7 @@ namespace :populate_sales do
   task payments: :environment do
     statuses = %w[payed paying cancelled]
     due_date = Faker::Date.between(5.years.ago, Date.today)
-    200.times do
+    250.times do
       Sales::Payment.create(
         client_name: Faker::Name.name,
         status: statuses.sample,

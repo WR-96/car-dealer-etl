@@ -7,7 +7,7 @@ namespace :populate_parts do
                supplier_orders requisitions]
 
   task clients: :environment do
-    200.times do
+    250.times do
       name = Faker::Name.name
       Parts::Client.create(
         name: name,
@@ -20,7 +20,7 @@ namespace :populate_parts do
   end
 
   task employees: :environment do
-    200.times do
+    250.times do
       name = Faker::Name.name
       Parts::Employee.create(
         name: name,
@@ -32,7 +32,7 @@ namespace :populate_parts do
   end
 
   task sales: :environment do
-    200.times do
+    250.times do
       price = Faker::Commerce.price(300.0..5_000.0)
       amount = Faker::Number.within(1..10)
       total = price * amount
@@ -49,7 +49,7 @@ namespace :populate_parts do
   end
 
   task bills: :environment do
-    200.times do
+    250.times do
       price = Faker::Commerce.price(300.0..5_000.0)
       amount = Faker::Number.within(1..10)
       sub_total = price * amount
@@ -73,7 +73,7 @@ namespace :populate_parts do
   end
 
   task spare_parts: :environment do
-    200.times do
+    250.times do
       maker = Faker::Vehicle.make
       Parts::SparePart.create(
         description: Faker::Vehicle.standard_specs.sample,
@@ -87,7 +87,7 @@ namespace :populate_parts do
   end
 
   task providers: :environment do
-    200.times do
+    250.times do
       Parts::Provider.create(
         tradename: Faker::Company.name,
         phone: Faker::Base.numerify('3######'),
@@ -101,7 +101,7 @@ namespace :populate_parts do
   end
 
   task sale_returns: :environment do
-    200.times do
+    250.times do
       Parts::SaleReturn.create(
         client_name: Faker::Name.name,
         date: Faker::Date.between(5.years.ago, Date.today),
@@ -113,7 +113,7 @@ namespace :populate_parts do
   end
 
   task provider_returns: :environment do
-    200.times do
+    250.times do
       Parts::ProviderReturn.create(
         provider_name: Faker::Company.name,
         date: Faker::Date.between(5.years.ago, Date.today),
@@ -126,7 +126,7 @@ namespace :populate_parts do
 
   task supplier_orders: :environment do
     statuses = %w[shipped pending delivered canceled]
-    200.times do
+    250.times do
       amount = Faker::Number.within(100..1_000)
       price = Faker::Commerce.price(300.0..5_000.0)
       total = amount * price
@@ -147,7 +147,7 @@ namespace :populate_parts do
 
   task requisitions: :environment do
     statuses = %w[shipped pending delivered canceled]
-    200.times do
+    250.times do
       date = Faker::Date.between(5.year.ago, Date.today)
       Parts::Requisition.create(
         employee_name: Faker::Name.name,
