@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Client name
         %th Address line
         %th City
@@ -16,12 +17,13 @@
     %tbody
       - @sales_addresses.each do |sales_address|
         %tr
-          %td= sales_address.client_name
-          %td= sales_address.address_line
-          %td= sales_address.city
-          %td= sales_address.state
-          %td= sales_address.country
-          %td= sales_address.zip_code
+          %td= sales_address.id
+          - td_for(sales_address, :client_name)
+          - td_for(sales_address, :address_line)
+          - td_for(sales_address, :city)
+          - td_for(sales_address, :state)
+          - td_for(sales_address, :country)
+          - td_for(sales_address, :zip_code)
           %td= link_to 'Edit', edit_sales_address_path(sales_address)
           %td= link_to 'Destroy', sales_address, method: :delete, data: { confirm: 'Are you sure?' }
 

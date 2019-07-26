@@ -1,28 +1,30 @@
 = form_for @sales_address do |f|
   - if @sales_address.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@sales_address.errors.count, "error")} prohibited this sales_address from being saved:"
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3{ role: 'alert' }
+      %h2= "#{pluralize(@sales_address.errors.count, "error")} prohibited this sales address from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'aria-label': 'Close'}
+        %span{"aria-hidden": "true"} ×
       %ul
         - @sales_address.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :client_name
-    = f.text_field :client_name
-  .field
+    = f.text_field :client_name, class: 'form-control'
+  .form-group
     = f.label :address_line
-    = f.text_field :address_line
-  .field
+    = f.text_field :address_line, class: 'form-control'
+  .form-group
     = f.label :city
-    = f.text_field :city
-  .field
+    = f.text_field :city, class: 'form-control'
+  .form-group
     = f.label :state
-    = f.text_field :state
-  .field
+    = f.text_field :state, class: 'form-control'
+  .form-group
     = f.label :country
-    = f.text_field :country
-  .field
+    = f.text_field :country, class: 'form-control'
+  .form-group
     = f.label :zip_code
-    = f.text_field :zip_code
+    = f.text_field :zip_code, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
