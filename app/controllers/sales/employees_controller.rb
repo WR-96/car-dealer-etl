@@ -5,7 +5,7 @@ module Sales
     before_action :set_sales_employee, only: %i[edit update destroy]
 
     def index
-      @sales_employees = Sales::Employee.all
+      @sales_employees = Sales::Employee.all.order(updated_at: :desc)
     end
 
     def edit; end

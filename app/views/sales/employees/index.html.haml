@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Name
         %th Last name
         %th Phone
@@ -14,10 +15,11 @@
     %tbody
       - @sales_employees.each do |sales_employee|
         %tr
-          %td= sales_employee.name
-          %td= sales_employee.last_name
-          %td= sales_employee.phone
-          %td= sales_employee.email
+          %td= sales_employee.id
+          - td_for(sales_employee, :name)
+          - td_for(sales_employee, :last_name)
+          - td_for(sales_employee, :phone)
+          - td_for(sales_employee, :email)
           %td= link_to 'Edit', edit_sales_employee_path(sales_employee)
           %td= link_to 'Destroy', sales_employee, method: :delete, data: { confirm: 'Are you sure?' }
 
