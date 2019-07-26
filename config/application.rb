@@ -35,6 +35,8 @@ module CarDealer
       g.jbuilder false
       g.assets false
       g.helper false
+      g.factory_bot false
+      g.factory_bot dir: 'factories'
     end
   end
 end
