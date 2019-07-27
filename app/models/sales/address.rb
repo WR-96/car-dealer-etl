@@ -7,6 +7,6 @@ module Sales
                                                                message: 'only allow letters' }
 
     validates :address_line, :city, :state, :country, length: { maximum: 100 }
-    validates :zip_code, numericality: { only_integer: true }, length: { is: 5}
+    validates :zip_code, numericality: { only_integer: true }, length: { is: 5 }
   end
 end

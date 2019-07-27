@@ -68,7 +68,7 @@ namespace :populate_workshop do
         name: name,
         phone: Faker::Base.numerify('3######'),
         cellphone: Faker::Base.numerify('312#######'),
-        email: Faker::Internet.free_email(name),
+        email: Faker::Internet.free_email(name)
       )
     end
   end
@@ -112,9 +112,8 @@ namespace :populate_workshop do
         date: Faker::Date.between(5.years.ago, Date.today),
         mileage: Faker::Vehicle.mileage(50_000, 250_000),
         fuel_level: fuel_levels.sample,
-        comment: Faker::Lorem.paragraph,
+        comment: Faker::Lorem.paragraph
       )
     end
   end
-
 end

@@ -3,10 +3,9 @@
 namespace :errors_sales do
   require 'faker'
 
-  task all:  %i[employees clients addresses cars test_drives bills payments deals]
+  task all: %i[employees clients addresses cars test_drives bills payments deals]
 
   task employees: :environment do
-
     # Longitud de nombre mayor a 50 caracteres
     10.times do
       FactoryBot.create(:sales_employee, name: Faker::Lorem.paragraph_by_chars(55))
@@ -24,7 +23,7 @@ namespace :errors_sales do
       FactoryBot.create(:sales_employee, email: Faker::Internet.email("#{name} #{last_name}", '@'))
     end
 
-    # Numero de telefono invalido    
+    # Numero de telefono invalido
     10.times do
       FactoryBot.create(:sales_employee, phone: Faker::Base.regexify(/(\w|\d){10}/))
     end
@@ -33,11 +32,9 @@ namespace :errors_sales do
     10.times do
       FactoryBot.create(:sales_employee, phone: Faker::Base.numerify('3#########'))
     end
-
   end
 
   task addresses: :environment do
-
     # Longitud de nombre mayor a 50
     10.times do
       FactoryBot.create(:sales_address, client_name: Faker::Lorem.paragraph_by_chars(55))
@@ -65,7 +62,6 @@ namespace :errors_sales do
   end
 
   task cars: :environment do
-
     # Longitud de 'modelo' mayor a 50
     10.times do
       FactoryBot.create(:sales_car, model: Faker::Lorem.paragraph_by_chars(55))
@@ -76,7 +72,7 @@ namespace :errors_sales do
       FactoryBot.create(:sales_car, category: Faker::Lorem.paragraph_by_chars(55))
     end
 
-    # Invalid year 
+    # Invalid year
     10.times do
       FactoryBot.create(:sales_car, year: Faker::Base.regexify(/\w{4}/))
     end
@@ -93,7 +89,7 @@ namespace :errors_sales do
 
     # Fecha de compra invalida
     10.times do
-      FactoryBot.create(:sales_car, purchase_date: Faker::Base.regexify(/\w{2}\/\w{2}\/\w{4}/))
+      FactoryBot.create(:sales_car, purchase_date: Faker::Base.regexify(%r{\w{2}/\w{2}/\w{4}}))
     end
   end
 
@@ -105,7 +101,7 @@ namespace :errors_sales do
 
     # Fecha invalida
     10.times do
-      FactoryBot.create(:sales_test_drive, date: Faker::Base.regexify(/\w{2}\/\w{2}\/\w{4}/))
+      FactoryBot.create(:sales_test_drive, date: Faker::Base.regexify(%r{\w{2}/\w{2}/\w{4}}))
     end
 
     # Hora invalida
@@ -142,7 +138,7 @@ namespace :errors_sales do
 
     # Fecha invalida
     10.times do
-      FactoryBot.create(:sales_deal, date: Faker::Base.regexify(/\w{2}\/\w{2}\/\w{4}/))
+      FactoryBot.create(:sales_deal, date: Faker::Base.regexify(%r{\w{2}/\w{2}/\w{4}}))
     end
 
     # Dia de pago invalido
@@ -164,7 +160,7 @@ namespace :errors_sales do
 
     # Fecha invalida
     10.times do
-      FactoryBot.create(:sales_bill, date: Faker::Base.regexify(/\w{2}\/\w{2}\/\w{4}/))
+      FactoryBot.create(:sales_bill, date: Faker::Base.regexify(%r{\w{2}/\w{2}/\w{4}}))
     end
 
     # total invalido
@@ -189,16 +185,16 @@ namespace :errors_sales do
       FactoryBot.create(:sales_payment, status: Faker::Lorem.word)
     end
 
-    # Fecha limite de pago invalida 
+    # Fecha limite de pago invalida
     10.times do
-      due_date = Faker::Base.regexify(/\w{2}\/\w{2}\/\w{4}/)
+      due_date = Faker::Base.regexify(%r{\w{2}/\w{2}/\w{4}})
       payment_date = Faker::Date.between(5.years.ago, Date.today)
       FactoryBot.create(:sales_payment, due_date: due_date, payment_date: payment_date)
     end
 
     # Fecha de pago incorrecta
     10.times do
-      FactoryBot.create(:sales_payment, payment_date: Faker::Base.regexify(/\w{2}\/\w{2}\/\w{4}/))
+      FactoryBot.create(:sales_payment, payment_date: Faker::Base.regexify(%r{\w{2}/\w{2}/\w{4}}))
     end
 
     # Cantidad incorrecta
@@ -211,14 +207,14 @@ namespace :errors_sales do
     # Nombre con longitund mayor a 50
     10.times do
       name = Faker::Lorem.paragraph_by_chars(55)
-      email = Faker::Internet.free_email()
+      email = Faker::Internet.free_email
       FactoryBot.create(:sales_client, name: name, email: email)
     end
 
     # Nombre invalido
     10.times do
       name = Faker::Base.regexify(/(\w|\d){10}/)
-      email = Faker::Internet.free_email()
+      email = Faker::Internet.free_email
       FactoryBot.create(:sales_client, name: name, email: email)
     end
 
@@ -238,5 +234,4 @@ namespace :errors_sales do
       FactoryBot.create(:sales_client, rfc: Faker::Base.regexify(/\w{13}/))
     end
   end
-
 end

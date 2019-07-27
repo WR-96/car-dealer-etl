@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-
   def td_for(model, attr)
     tooltip_title = ''
 
@@ -17,6 +16,5 @@ module ApplicationHelper
     haml_tag :td, attr_hash do
       haml_concat model[attr]
     end
-
   end
 end

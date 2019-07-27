@@ -9,7 +9,7 @@ module Sales
                                                                message: 'only allow letters' }
 
     validates :status, inclusion: { in: %w[payed paying cancelled],
-                                    message: "%{value} is not a valid status" }
+                                    message: '%{value} is not a valid status' }
     validates :due_date, :payment_date, date: true
     validates :amount, numericality: { greater_than: 0 }
   end

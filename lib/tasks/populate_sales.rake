@@ -3,10 +3,9 @@
 namespace :populate_sales do
   require 'faker'
 
-  task all:  %i[employees clients addresses cars test_drives bills payments deals]
+  task all: %i[employees clients addresses cars test_drives bills payments deals]
 
   task employees: :environment do
-
     250.times do
       FactoryBot.create(:sales_employee)
     end
@@ -53,5 +52,4 @@ namespace :populate_sales do
       FactoryBot.create(:sales_payment)
     end
   end
-
 end

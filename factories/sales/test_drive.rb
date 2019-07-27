@@ -3,7 +3,6 @@
 require 'faker'
 
 FactoryBot.define do
-
   hours = (9..19).to_a
   minutes = (15..45).step(15).to_a
 
@@ -17,5 +16,4 @@ FactoryBot.define do
     inital_miles { Faker::Vehicle.mileage(50_000) }
     final_miles { Faker::Vehicle.mileage(inital_miles) }
   end
-
 end
