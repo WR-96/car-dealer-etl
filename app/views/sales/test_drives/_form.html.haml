@@ -1,34 +1,36 @@
 = form_for @sales_test_drive do |f|
   - if @sales_test_drive.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3{ role: 'alert' }
       %h2= "#{pluralize(@sales_test_drive.errors.count, "error")} prohibited this test drive from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'aria-label': 'Close'}
+        %span{"aria-hidden": "true"} ×
       %ul
         - @sales_test_drive.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :client_name
-    = f.text_field :client_name
-  .field
+    = f.text_field :client_name, class: 'form-control'
+  .form-group
     = f.label :agent_name
-    = f.text_field :agent_name
-  .field
+    = f.text_field :agent_name, class: 'form-control'
+  .form-group
     = f.label :car
-    = f.text_field :car
-  .field
+    = f.text_field :car, class: 'form-control'
+  .form-group
     = f.label :date
-    = f.text_field :date
-  .field
+    = f.text_field :date, class: 'form-control'
+  .form-group
     = f.label :hour
-    = f.text_field :hour
-  .field
+    = f.text_field :hour, class: 'form-control'
+  .form-group
     = f.label :license_number
-    = f.text_field :license_number
-  .field
+    = f.text_field :license_number, class: 'form-control'
+  .form-group
     = f.label :inital_miles
-    = f.text_field :inital_miles
-  .field
+    = f.text_field :inital_miles, class: 'form-control'
+  .form-group
     = f.label :final_miles
-    = f.text_field :final_miles
+    = f.text_field :final_miles, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'

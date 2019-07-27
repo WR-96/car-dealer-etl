@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Client name
         %th Agent name
         %th Car
@@ -18,14 +19,15 @@
     %tbody
       - @sales_test_drives.each do |sales_test_drive|
         %tr
-          %td= sales_test_drive.client_name
-          %td= sales_test_drive.agent_name
-          %td= sales_test_drive.car
-          %td= sales_test_drive.date
-          %td= sales_test_drive.hour
-          %td= sales_test_drive.license_number
-          %td= sales_test_drive.inital_miles
-          %td= sales_test_drive.final_miles
+          %td= sales_test_drive.id
+          - td_for(sales_test_drive, :client_name)
+          - td_for(sales_test_drive, :agent_name)
+          - td_for(sales_test_drive, :car)
+          - td_for(sales_test_drive, :date)
+          - td_for(sales_test_drive, :hour)
+          - td_for(sales_test_drive, :license_number)
+          - td_for(sales_test_drive, :inital_miles)
+          - td_for(sales_test_drive, :final_miles)
           %td= link_to 'Edit', edit_sales_test_drife_path(sales_test_drive)
           %td= link_to 'Destroy', sales_test_drive, method: :delete, data: { confirm: 'Are you sure?' }
 
