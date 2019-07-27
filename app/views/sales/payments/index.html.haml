@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Client name
         %th Status
         %th Due date
@@ -15,11 +16,12 @@
     %tbody
       - @sales_payments.each do |sales_payment|
         %tr
-          %td= sales_payment.client_name
-          %td= sales_payment.status
-          %td= sales_payment.due_date
-          %td= sales_payment.payment_date
-          %td= sales_payment.amount
+          %td= sales_payment.id
+          - td_for(sales_payment, :client_name)
+          - td_for(sales_payment, :status)
+          - td_for(sales_payment, :due_date)
+          - td_for(sales_payment, :payment_date)
+          - td_for(sales_payment, :amount)
           %td= link_to 'Edit', edit_sales_payment_path(sales_payment)
           %td= link_to 'Destroy', sales_payment, method: :delete, data: { confirm: 'Are you sure?' }
 
