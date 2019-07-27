@@ -1,31 +1,33 @@
 = form_for @sales_deal do |f|
   - if @sales_deal.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3{ role: 'alert' }
       %h2= "#{pluralize(@sales_deal.errors.count, "error")} prohibited this sales_deal from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'aria-label': 'Close'}
+        %span{"aria-hidden": "true"} ×
       %ul
         - @sales_deal.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :client_name
-    = f.text_field :client_name
-  .field
+    = f.text_field :client_name, class: 'form-control'
+  .form-group
     = f.label :agent_name
-    = f.text_field :agent_name
-  .field
+    = f.text_field :agent_name, class: 'form-control'
+  .form-group
     = f.label :car
-    = f.text_field :car
-  .field
+    = f.text_field :car, class: 'form-control'
+  .form-group
     = f.label :price
-    = f.text_field :price
-  .field
+    = f.text_field :price, class: 'form-control'
+  .form-group
     = f.label :date
-    = f.text_field :date
-  .field
+    = f.text_field :date, class: 'form-control'
+  .form-group
     = f.label :monthly_payment
-    = f.text_field :monthly_payment
-  .field
+    = f.text_field :monthly_payment, class: 'form-control'
+  .form-group
     = f.label :payment_due_day
-    = f.text_field :payment_due_day
+    = f.text_field :payment_due_day, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
