@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Employee name
         %th Date
         %th Supplier tradename
@@ -19,15 +20,16 @@
     %tbody
       - @parts_supplier_orders.each do |parts_supplier_order|
         %tr
-          %td= parts_supplier_order.employee_name
-          %td= parts_supplier_order.date
-          %td= parts_supplier_order.supplier_tradename
-          %td= parts_supplier_order.status
-          %td= parts_supplier_order.delivery_date
-          %td= parts_supplier_order.article
-          %td= parts_supplier_order.price
-          %td= parts_supplier_order.amount
-          %td= parts_supplier_order.total
+          %td= parts_supplier_order.id
+          - td_for(parts_supplier_order, :employee_name)
+          - td_for(parts_supplier_order, :date)
+          - td_for(parts_supplier_order, :supplier_tradename)
+          - td_for(parts_supplier_order, :status)
+          - td_for(parts_supplier_order, :delivery_date)
+          - td_for(parts_supplier_order, :article)
+          - td_for(parts_supplier_order, :price)
+          - td_for(parts_supplier_order, :amount)
+          - td_for(parts_supplier_order, :total)
           %td= link_to 'Edit', edit_parts_supplier_order_path(parts_supplier_order)
           %td= link_to 'Destroy', parts_supplier_order, method: :delete, data: { confirm: 'Are you sure?' }
 
