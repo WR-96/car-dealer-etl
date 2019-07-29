@@ -30,7 +30,8 @@ module Parts
     end
 
     def parts_sale_params
-      params.require(:parts_sale).permit(:client_name, :employee_name, :date, :amount, :total)
+      params.require(:parts_sale).permit(:client_name, :employee_name, :date, :amount, :total,
+                                         :price, :product)
     end
   end
 end
