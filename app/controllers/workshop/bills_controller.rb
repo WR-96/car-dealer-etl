@@ -31,7 +31,7 @@ module Workshop
 
     def workshop_bill_params
       params.require(:workshop_bill).permit(:client_name, :date, :sub_total, :tax_percentage,
-                                            :tax_amount, :total)
+                                            :tax_amount, :total, :service)
     end
   end
 end
