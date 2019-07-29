@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Description
         %th Car model
         %th Car maker
@@ -16,12 +17,13 @@
     %tbody
       - @parts_spare_parts.each do |parts_spare_part|
         %tr
-          %td= parts_spare_part.description
-          %td= parts_spare_part.car_model
-          %td= parts_spare_part.car_maker
-          %td= parts_spare_part.price
-          %td= parts_spare_part.stock
-          %td= parts_spare_part.reorder
+          %td= parts_spare_part.id
+          - td_for(parts_spare_part, :description)
+          - td_for(parts_spare_part, :car_model)
+          - td_for(parts_spare_part, :car_maker)
+          - td_for(parts_spare_part, :price)
+          - td_for(parts_spare_part, :stock)
+          - td_for(parts_spare_part, :reorder)
           %td= link_to 'Edit', edit_parts_spare_part_path(parts_spare_part)
           %td= link_to 'Destroy', parts_spare_part, method: :delete, data: { confirm: 'Are you sure?' }
 
