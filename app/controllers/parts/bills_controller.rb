@@ -30,8 +30,8 @@ module Parts
     end
 
     def parts_bill_params
-      params.require(:parts_bill).permit(:client_name, :date, :sub_total, :tax_percentage,
-                                         :tax_amount, :total)
+      params.require(:parts_bill).permit(:client_name, :rfc, :date, :product, :price, :amount,
+                                         :sub_total, :tax_percentage, :tax_amount, :total)
     end
   end
 end
