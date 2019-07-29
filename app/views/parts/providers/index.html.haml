@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Tradename
         %th Phone
         %th Cellphone
@@ -17,13 +18,14 @@
     %tbody
       - @parts_providers.each do |parts_provider|
         %tr
-          %td= parts_provider.tradename
-          %td= parts_provider.phone
-          %td= parts_provider.cellphone
-          %td= parts_provider.email
-          %td= parts_provider.car_maker
-          %td= parts_provider.piece
-          %td= parts_provider.price
+          %td= parts_provider.id
+          - td_for(parts_provider, :tradename)
+          - td_for(parts_provider, :phone)
+          - td_for(parts_provider, :cellphone)
+          - td_for(parts_provider, :email)
+          - td_for(parts_provider, :car_maker)
+          - td_for(parts_provider, :piece)
+          - td_for(parts_provider, :price)
           %td= link_to 'Edit', edit_parts_provider_path(parts_provider)
           %td= link_to 'Destroy', parts_provider, method: :delete, data: { confirm: 'Are you sure?' }
 

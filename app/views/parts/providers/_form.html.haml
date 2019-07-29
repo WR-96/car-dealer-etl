@@ -1,31 +1,33 @@
 = form_for @parts_provider do |f|
   - if @parts_provider.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3
       %h2= "#{pluralize(@parts_provider.errors.count, "error")} prohibited this parts_provider from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'arial-label': 'Close'}
+        %span{'aria-hidden': 'true'} x
       %ul
         - @parts_provider.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :tradename
-    = f.text_field :tradename
-  .field
+    = f.text_field :tradename, class: 'form-control'
+  .form-group
     = f.label :phone
-    = f.text_field :phone
-  .field
+    = f.text_field :phone, class: 'form-control'
+  .form-group
     = f.label :cellphone
-    = f.text_field :cellphone
-  .field
+    = f.text_field :cellphone, class: 'form-control'
+  .form-group
     = f.label :email
-    = f.text_field :email
-  .field
+    = f.text_field :email, class: 'form-control'
+  .form-group
     = f.label :car_maker
-    = f.text_field :car_maker
-  .field
+    = f.text_field :car_maker, class: 'form-control'
+  .form-group
     = f.label :piece
-    = f.text_field :piece
-  .field
+    = f.text_field :piece, class: 'form-control'
+  .form-group
     = f.label :price
-    = f.text_field :price
+    = f.text_field :price, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
