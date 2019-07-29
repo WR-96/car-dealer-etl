@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Provider name
         %th Date
         %th Article
@@ -15,11 +16,12 @@
     %tbody
       - @parts_provider_returns.each do |parts_provider_return|
         %tr
-          %td= parts_provider_return.provider_name
-          %td= parts_provider_return.date
-          %td= parts_provider_return.article
-          %td= parts_provider_return.refound
-          %td= parts_provider_return.comment
+          %td= parts_provider_return.id
+          - td_for(parts_provider_return, :provider_name)
+          - td_for(parts_provider_return, :date)
+          - td_for(parts_provider_return, :article)
+          - td_for(parts_provider_return, :refound)
+          - td_for(parts_provider_return, :comment)
           %td= link_to 'Edit', edit_parts_provider_return_path(parts_provider_return)
           %td= link_to 'Destroy', parts_provider_return, method: :delete, data: { confirm: 'Are you sure?' }
 
