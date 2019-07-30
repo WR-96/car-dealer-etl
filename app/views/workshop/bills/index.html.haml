@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Date
         %th Client name
         %th RFC
@@ -18,14 +19,15 @@
     %tbody
       - @workshop_bills.each do |workshop_bill|
         %tr
-          %td= workshop_bill.date
-          %td= workshop_bill.client_name
-          %td= workshop_bill.rfc
-          %td= workshop_bill.service
-          %td= workshop_bill.sub_total
-          %td= workshop_bill.tax_percentage
-          %td= workshop_bill.tax_amount
-          %td= workshop_bill.total
+          %td= workshop_bill.id
+          - td_for(workshop_bill, :date)
+          - td_for(workshop_bill, :client_name)
+          - td_for(workshop_bill, :rfc)
+          - td_for(workshop_bill, :service)
+          - td_for(workshop_bill, :sub_total)
+          - td_for(workshop_bill, :tax_percentage)
+          - td_for(workshop_bill, :tax_amount)
+          - td_for(workshop_bill, :total)
           %td= link_to 'Edit', edit_workshop_bill_path(workshop_bill)
           %td= link_to 'Destroy', workshop_bill, method: :delete, data: { confirm: 'Are you sure?' }
 

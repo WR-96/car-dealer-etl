@@ -1,34 +1,36 @@
 = form_for @workshop_bill do |f|
   - if @workshop_bill.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3
       %h2= "#{pluralize(@workshop_bill.errors.count, "error")} prohibited this workshop_bill from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'arial-label': 'Close'}
+        %span{'aria-hidden': 'true'} x
       %ul
         - @workshop_bill.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :date
-    = f.text_field :date
-  .field
+    = f.text_field :date, class: 'form-control'
+  .form-group
     = f.label :client_name
-    = f.text_field :client_name
-  .field
+    = f.text_field :client_name, class: 'form-control'
+  .form-group
     = f.label :rfc
-    = f.text_field :rfc
-  .field
+    = f.text_field :rfc, class: 'form-control'
+  .form-group
     = f.label :service
-    = f.text_field :service
-  .field
+    = f.text_field :service, class: 'form-control'
+  .form-group
     = f.label :sub_total
-    = f.text_field :sub_total
-  .field
+    = f.text_field :sub_total, class: 'form-control'
+  .form-group
     = f.label :tax_percentage
-    = f.text_field :tax_percentage
-  .field
+    = f.text_field :tax_percentage, class: 'form-control'
+  .form-group
     = f.label :tax_amount
-    = f.text_field :tax_amount
-  .field
+    = f.text_field :tax_amount, class: 'form-control'
+  .form-group
     = f.label :total
-    = f.text_field :total
+    = f.text_field :total, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
