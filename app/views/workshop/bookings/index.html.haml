@@ -4,6 +4,7 @@
   %table.table.table-hover
     %thead
       %tr
+        %th ID
         %th Mechanic name
         %th Client name
         %th Car
@@ -16,12 +17,13 @@
     %tbody
       - @workshop_bookings.each do |workshop_booking|
         %tr
-          %td= workshop_booking.mechanic_name
-          %td= workshop_booking.client_name
-          %td= workshop_booking.car
-          %td= workshop_booking.date
-          %td= workshop_booking.hour
-          %td= workshop_booking.description
+          %td= workshop_booking.id
+          - td_for(workshop_booking, :mechanic_name)
+          - td_for(workshop_booking, :client_name)
+          - td_for(workshop_booking, :car)
+          - td_for(workshop_booking, :date)
+          - td_for(workshop_booking, :hour)
+          - td_for(workshop_booking, :description)
           %td= link_to 'Edit', edit_workshop_booking_path(workshop_booking)
           %td= link_to 'Destroy', workshop_booking, method: :delete, data: { confirm: 'Are you sure?' }
 

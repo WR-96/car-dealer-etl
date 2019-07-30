@@ -1,28 +1,30 @@
 = form_for @workshop_booking do |f|
   - if @workshop_booking.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3
       %h2= "#{pluralize(@workshop_booking.errors.count, "error")} prohibited this workshop_booking from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'arial-label': 'Close'}
+        %span{'aria-hidden': 'true'} x
       %ul
         - @workshop_booking.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :mechanic_name
-    = f.text_field :mechanic_name
-  .field
+    = f.text_field :mechanic_name, class: 'form-control'
+  .form-group
     = f.label :client_name
-    = f.text_field :client_name
-  .field
+    = f.text_field :client_name, class: 'form-control'
+  .form-group
     = f.label :car
-    = f.text_field :car
-  .field
+    = f.text_field :car, class: 'form-control'
+  .form-group
     = f.label :date
-    = f.text_field :date
-  .field
+    = f.text_field :date, class: 'form-control'
+  .form-group
     = f.label :hour
-    = f.text_field :hour
-  .field
+    = f.text_field :hour, class: 'form-control'
+  .form-group
     = f.label :description
-    = f.text_field :description
+    = f.text_field :description, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
