@@ -1,28 +1,30 @@
 = form_for @workshop_inspection do |f|
   - if @workshop_inspection.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger.alert-dismissible.fade.show.p-3.m-3
       %h2= "#{pluralize(@workshop_inspection.errors.count, "error")} prohibited this workshop_inspection from being saved:"
+      %button{type: 'button', class: 'close', 'data-dismiss': 'alert', 'arial-label': 'Close'}
+        %span{'aria-hidden': 'true'} x
       %ul
         - @workshop_inspection.errors.full_messages.each do |message|
           %li= message
 
-  .field
+  .form-group
     = f.label :car
-    = f.text_field :car
-  .field
+    = f.text_field :car, class: 'form-control'
+  .form-group
     = f.label :mechanic_name
-    = f.text_field :mechanic_name
-  .field
+    = f.text_field :mechanic_name, class: 'form-control'
+  .form-group
     = f.label :date
-    = f.text_field :date
-  .field
+    = f.text_field :date, class: 'form-control'
+  .form-group
     = f.label :mileage
-    = f.text_field :mileage
-  .field
+    = f.text_field :mileage, class: 'form-control'
+  .form-group
     = f.label :fuel_level
-    = f.text_field :fuel_level
-  .field
+    = f.text_field :fuel_level, class: 'form-control'
+  .form-group
     = f.label :comment
-    = f.text_field :comment
+    = f.text_field :comment, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
