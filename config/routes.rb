@@ -15,14 +15,29 @@ Rails.application.routes.draw do
   end
 
   namespace :workshop do
-    resources :inspection_points, except: %i[new show]
+    get 'inspections/extract', to: 'inspections#extract'
+    get 'inspections/errors', to: 'inspections#errors'
     resources :inspections, except: %i[new show]
+    get 'bills/extract', to: 'bills#extract'
+    get 'bills/errors', to: 'bills#errors'
     resources :bills, except: %i[new show]
+    get 'repairs/extract', to: 'repairs#extract'
+    get 'repairs/errors', to: 'repairs#errors'
     resources :repairs, except: %i[new show]
+    get 'mechanics/extract', to: 'mechanics#extract'
+    get 'mechanics/errors', to: 'mechanics#errors'
     resources :mechanics, except: %i[new show]
+    get 'pieces/extract', to: 'pieces#extract'
+    get 'pieces/errors', to: 'pieces#errors'
     resources :pieces, except: %i[new show]
+    get 'bookings/extract', to: 'bookings#extract'
+    get 'bookings/errors', to: 'bookings#errors'
     resources :bookings, except: %i[new show]
+    get 'cars/extract', to: 'cars#extract'
+    get 'cars/errors', to: 'cars#errors'
     resources :cars, except: %i[new show]
+    get 'clients/extract', to: 'clients#extract'
+    get 'clients/errors', to: 'clients#errors'
     resources :clients, except: %i[new show]
   end
 

@@ -4,8 +4,27 @@ module Workshop
   class MechanicsController < ApplicationController
     before_action :set_workshop_mechanic, only: %i[edit update destroy]
 
+    def extract
+      if Workshop::Mechanic.all.empty?
+        Ffdd::Workshop::Mechanic.all.each do |row|
+          new_row = Workshop::Mechanic.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to workshop_mechanics_url, notice: 'Data extracted succesfully'
+      else
+        redirect_to workshop_mechanics_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @workshop_mechanics = Workshop::Mechanic.all.reject(&:valid?)
+
+      render :index
+    end
+
     def index
-      @workshop_mechanics = Workshop::Mechanic.all
+      @workshop_mechanics = Workshop::Mechanic.all.reject(&:invalid?)
     end
 
     def edit; end

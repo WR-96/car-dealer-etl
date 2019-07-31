@@ -4,8 +4,27 @@ module Workshop
   class BillsController < ApplicationController
     before_action :set_workshop_bill, only: %i[edit update destroy]
 
+    def extract
+      if Workshop::Bill.all.empty?
+        Ffdd::Workshop::Bill.all.each do |row|
+          new_row = Workshop::Bill.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to workshop_bills_url, notice: 'Data extracted succesfully'
+      else
+        redirect_to workshop_bills_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @workshop_bills = Workshop::Bill.all.reject(&:valid?)
+
+      render :index
+    end
+
     def index
-      @workshop_bills = Workshop::Bill.all
+      @workshop_bills = Workshop::Bill.all.reject(&:invalid?)
     end
 
     def edit; end

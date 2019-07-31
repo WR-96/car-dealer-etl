@@ -4,8 +4,27 @@ module Workshop
   class CarsController < ApplicationController
     before_action :set_workshop_car, only: %i[edit update destroy]
 
+    def extract
+      if Workshop::Car.all.empty?
+        Ffdd::Workshop::Car.all.each do |row|
+          new_row = Workshop::Car.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to workshop_cars_url, notice: 'Data extracted succesfully'
+      else
+        redirect_to workshop_cars_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @workshop_cars = Workshop::Car.all.reject(&:valid?)
+
+      render :index
+    end
+
     def index
-      @workshop_cars = Workshop::Car.all
+      @workshop_cars = Workshop::Car.all.reject(&:invalid?)
     end
 
     def edit; end

@@ -4,8 +4,27 @@ module Workshop
   class PiecesController < ApplicationController
     before_action :set_workshop_piece, only: %i[edit update destroy]
 
+    def extract
+      if Workshop::Piece.all.empty?
+        Ffdd::Workshop::Piece.all.each do |row|
+          new_row = Workshop::Piece.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to workshop_pieces_url, notice: 'Data extracted succesfully'
+      else
+        redirect_to workshop_pieces_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @workshop_pieces = Workshop::Piece.all.reject(&:valid?)
+
+      render :index
+    end
+
     def index
-      @workshop_pieces = Workshop::Piece.all
+      @workshop_pieces = Workshop::Piece.all.reject(&:invalid?)
     end
 
     def edit; end

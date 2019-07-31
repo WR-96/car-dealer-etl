@@ -4,8 +4,27 @@ module Workshop
   class BookingsController < ApplicationController
     before_action :set_workshop_booking, only: %i[edit update destroy]
 
+    def extract
+      if Workshop::Booking.all.empty?
+        Ffdd::Workshop::Booking.all.each do |row|
+          new_row = Workshop::Booking.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to workshop_bookings_url, notice: 'Data extracted succesfully'
+      else
+        redirect_to workshop_bookings_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @workshop_bookings = Workshop::Booking.all.reject(&:valid?)
+
+      render :index
+    end
+
     def index
-      @workshop_bookings = Workshop::Booking.all
+      @workshop_bookings = Workshop::Booking.all.reject(&:invalid?)
     end
 
     def edit; end

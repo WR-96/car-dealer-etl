@@ -1,0 +1,7 @@
+development:
+  encoding: utf8
+  adapter: mysql2
+  port: 3306
+  database: cardealer-workshop
+  host: localhost
+  username: root
