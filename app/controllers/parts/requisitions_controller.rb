@@ -4,8 +4,25 @@ module Parts
   class RequisitionsController < ApplicationController
     before_action :set_parts_requisition, only: %i[edit update destroy]
 
+    def extract
+      if Parts::Requisition.all.empty?
+        Ffdd::Parts::Requisition.all.each do |row|
+          new_row = Parts::Requisition.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+        redirect_to parts_requisitions_url, notice: 'Data successfully extracted'
+      else
+        redirect_to parts_requisitions_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @parts_requisitions = Parts::Requisition.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @parts_requisitions = Parts::Requisition.all
+      @parts_requisitions = Parts::Requisition.all.reject(&:invalid?)
     end
 
     def edit; end

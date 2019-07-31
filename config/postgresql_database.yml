@@ -1,0 +1,7 @@
+development:
+  encoding: utf8
+  adapter: postgresql
+  port: 5432
+  database: cardealer-parts
+  host: localhost
+  username: postgres

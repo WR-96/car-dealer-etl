@@ -4,8 +4,25 @@ module Parts
   class SaleReturnsController < ApplicationController
     before_action :set_parts_sale_return, only: %i[edit update destroy]
 
+    def extract
+      if Parts::SaleReturn.all.empty?
+        Ffdd::Parts::SaleReturn.all.each do |row|
+          new_row = Parts::SaleReturn.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+        redirect_to parts_sale_returns_url, notice: 'Data successfully extracted'
+      else
+        redirect_to parts_sale_returns_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @parts_sale_returns = Parts::SaleReturn.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @parts_sale_returns = Parts::SaleReturn.all
+      @parts_sale_returns = Parts::SaleReturn.all.reject(&:invalid?)
     end
 
     def edit; end

@@ -4,8 +4,25 @@ module Parts
   class ProviderReturnsController < ApplicationController
     before_action :set_parts_provider_return, only: %i[edit update destroy]
 
+    def extract
+      if Parts::ProviderReturn.all.empty?
+        Ffdd::Parts::ProviderReturn.all.each do |row|
+          new_row = Parts::ProviderReturn.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+        redirect_to parts_provider_returns_url, notice: 'Data successfully extracted'
+      else
+        redirect_to parts_provider_returns_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @parts_provider_returns = Parts::ProviderReturn.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @parts_provider_returns = Parts::ProviderReturn.all
+      @parts_provider_returns = Parts::ProviderReturn.all.reject(&:invalid?)
     end
 
     def edit; end

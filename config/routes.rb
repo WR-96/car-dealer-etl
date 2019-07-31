@@ -2,15 +2,35 @@
 
 Rails.application.routes.draw do
   namespace :parts do
+    get 'requisitions/extract', to: 'requisitions#extract'
+    get 'requisitions/errors', to: 'requisitions#errors'
     resources :requisitions, except: %i[new show]
+    get 'supplier_orders/extract', to: 'supplier_orders#extract'
+    get 'supplier_orders/errors', to: 'supplier_orders#errors'
     resources :supplier_orders, except: %i[new show]
+    get 'provider_returns/extract', to: 'provider_returns#extract'
+    get 'provider_returns/errors', to: 'provider_returns#errors'
     resources :provider_returns, except: %i[new show]
+    get 'sale_returns/extract', to: 'sale_returns#extract'
+    get 'sale_returns/errors', to: 'sale_returns#errors'
     resources :sale_returns, except: %i[new show]
+    get 'providers/extract', to: 'providers#extract'
+    get 'providers/errors', to: 'providers#errors'
     resources :providers, except: %i[new show]
+    get 'spare_parts/extract', to: 'spare_parts#extract'
+    get 'spare_parts/errors', to: 'spare_parts#errors'
     resources :spare_parts, except: %i[new show]
+    get 'bills/extract', to: 'bills#extract'
+    get 'bills/errors', to: 'bills#errors'
     resources :bills, except: %i[new show]
+    get 'sales/extract', to: 'sales#extract'
+    get 'sales/errors', to: 'sales#errors'
     resources :sales, except: %i[new show]
+    get 'employees/extract', to: 'employees#extract'
+    get 'employees/errors', to: 'employees#errors'
     resources :employees, except: %i[new show]
+    get 'clients/extract', to: 'clients#extract'
+    get 'clients/errors', to: 'clients#errors'
     resources :clients, except: %i[new show]
   end
 

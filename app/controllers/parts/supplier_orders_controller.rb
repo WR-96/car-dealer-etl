@@ -4,8 +4,25 @@ module Parts
   class SupplierOrdersController < ApplicationController
     before_action :set_parts_supplier_order, only: %i[edit update destroy]
 
+    def extract
+      if Parts::SupplierOrder.all.empty?
+        Ffdd::Parts::SupplierOrder.all.each do |row|
+          new_row = Parts::SupplierOrder.new(row.attributes.except('id'))
+          new_row.save(validate: false)
+        end
+        redirect_to parts_supplier_orders_url, notice: 'Data successfully extracted'
+      else
+        redirect_to parts_supplier_orders_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @parts_supplier_orders = Parts::SupplierOrder.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @parts_supplier_orders = Parts::SupplierOrder.all
+      @parts_supplier_orders = Parts::SupplierOrder.all.reject(&:invalid?)
     end
 
     def edit; end
