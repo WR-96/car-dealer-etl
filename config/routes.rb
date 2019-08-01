@@ -62,13 +62,29 @@ Rails.application.routes.draw do
   end
 
   namespace :sales do
+    get 'clients/extract', to: 'clients#extract'
+    get 'clients/errors', to: 'clients#errors'
     resources :clients, except: %i[new show]
+    get 'payments/extract', to: 'payments#extract'
+    get 'payments/errors', to: 'payments#errors'
     resources :payments, except: %i[new show]
+    get 'bills/extract', to: 'bills#extract'
+    get 'bills/errors', to: 'bills#errors'
     resources :bills, except: %i[new show]
+    get 'deals/extract', to: 'deals#extract'
+    get 'deals/errors', to: 'deals#errors'
     resources :deals, except: %i[new show]
+    get 'test_drives/extract', to: 'test_drives#extract'
+    get 'test_drives/errors', to: 'test_drives#errors'
     resources :test_drives, except: %i[new show]
+    get 'cars/extract', to: 'cars#extract'
+    get 'cars/errors', to: 'cars#errors'
     resources :cars, except: %i[new show]
+    get 'addresses/extract', to: 'addresses#extract'
+    get 'addresses/errors', to: 'addresses#errors'
     resources :addresses, except: %i[new show]
+    get 'employees/extract', to: 'employees#extract'
+    get 'employees/errors', to: 'employees#errors'
     resources :employees, except: %i[new show]
   end
 

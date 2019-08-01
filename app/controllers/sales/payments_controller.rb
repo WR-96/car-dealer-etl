@@ -1,11 +1,32 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Sales
   class PaymentsController < ApplicationController
     before_action :set_sales_payment, only: %i[edit update destroy]
 
+    def extract
+      if Sales::Payment.all.empty?
+        file_path = File.join(Rails.root, 'app/assets/csv/sales', 'payments.csv')
+        CSV.foreach(file_path, headers: true) do |row|
+          new_row = Sales::Payment.new(row.to_h.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to sales_payments_url, notice: 'Data sucessfully extracted'
+      else
+        redirect_to sales_payments_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @sales_payments = Sales::Payment.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @sales_payments = Sales::Payment.all
+      @sales_payments = Sales::Payment.all.reject(&:invalid?)
     end
 
     def new

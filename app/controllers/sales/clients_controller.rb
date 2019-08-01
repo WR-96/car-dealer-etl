@@ -1,11 +1,32 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Sales
   class ClientsController < ApplicationController
     before_action :set_sales_client, only: %i[edit update destroy]
 
+    def extract
+      if Sales::Client.all.empty?
+        file_path = File.join(Rails.root, 'app/assets/csv/sales', 'clients.csv')
+        CSV.foreach(file_path, headers: true) do |row|
+          new_row = Sales::Client.new(row.to_h.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to sales_clients_url, notice: 'Data sucessfully extracted'
+      else
+        redirect_to sales_clients_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @sales_clients = Sales::Client.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @sales_clients = Sales::Client.all
+      @sales_clients = Sales::Client.all.reject(&:invalid?)
     end
 
     def new

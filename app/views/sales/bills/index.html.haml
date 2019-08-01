@@ -1,5 +1,9 @@
 %h1 Listing Bills
 
+= link_to 'Extract', sales_bills_extract_path, class: 'btn btn-primary my-3'
+= link_to 'Errors', sales_bills_errors_path, class: 'btn btn-primary my-3'
+= link_to 'Clean', sales_bills_path, class: 'btn btn-primary my-3'
+
 .table-responsive
   %table.table.table-hover
     %thead

@@ -1,11 +1,32 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Sales
   class EmployeesController < ApplicationController
     before_action :set_sales_employee, only: %i[edit update destroy]
 
+    def extract
+      if Sales::Employee.all.empty?
+        file_path = File.join(Rails.root, 'app/assets/csv/sales', 'employees.csv')
+        CSV.foreach(file_path, headers: true) do |row|
+          new_row = Sales::Employee.new(row.to_h.except('id'))
+          new_row.save(validate: false)
+        end
+
+        redirect_to sales_employees_url, notice: 'Data sucessfully extracted'
+      else
+        redirect_to sales_employees_url, notice: 'Data already extracted'
+      end
+    end
+
+    def errors
+      @sales_employees = Sales::Employee.all.reject(&:valid?)
+      render :index
+    end
+
     def index
-      @sales_employees = Sales::Employee.all.order(updated_at: :desc)
+      @sales_employees = Sales::Employee.all.reject(&:invalid?)
     end
 
     def edit; end
