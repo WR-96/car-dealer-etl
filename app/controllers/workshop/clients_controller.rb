@@ -4,6 +4,15 @@ module Workshop
   class ClientsController < ApplicationController
     before_action :set_workshop_client, only: %i[edit update destroy]
 
+    def load
+      Workshop::Client.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Client.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_clients_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Client.all.empty?
         Ffdd::Workshop::Client.all.each do |row|

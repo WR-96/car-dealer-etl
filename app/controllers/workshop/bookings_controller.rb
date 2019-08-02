@@ -4,6 +4,15 @@ module Workshop
   class BookingsController < ApplicationController
     before_action :set_workshop_booking, only: %i[edit update destroy]
 
+    def load
+      Workshop::Booking.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Booking.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_bookings_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Booking.all.empty?
         Ffdd::Workshop::Booking.all.each do |row|

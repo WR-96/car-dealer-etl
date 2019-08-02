@@ -4,6 +4,15 @@ module Workshop
   class InspectionsController < ApplicationController
     before_action :set_workshop_inspection, only: %i[edit update destroy]
 
+    def load
+      Workshop::Inspection.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Inspection.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_inspections_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Inspection.all.empty?
         Ffdd::Workshop::Inspection.all.each do |row|

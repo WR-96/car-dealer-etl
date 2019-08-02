@@ -4,6 +4,15 @@ module Workshop
   class BillsController < ApplicationController
     before_action :set_workshop_bill, only: %i[edit update destroy]
 
+    def load
+      Workshop::Bill.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Bill.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_bills_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Bill.all.empty?
         Ffdd::Workshop::Bill.all.each do |row|

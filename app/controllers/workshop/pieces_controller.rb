@@ -4,6 +4,15 @@ module Workshop
   class PiecesController < ApplicationController
     before_action :set_workshop_piece, only: %i[edit update destroy]
 
+    def load
+      Workshop::Piece.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Piece.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_pieces_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Piece.all.empty?
         Ffdd::Workshop::Piece.all.each do |row|

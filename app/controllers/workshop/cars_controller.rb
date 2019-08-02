@@ -4,6 +4,15 @@ module Workshop
   class CarsController < ApplicationController
     before_action :set_workshop_car, only: %i[edit update destroy]
 
+    def load
+      Workshop::Car.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Car.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_cars_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Car.all.empty?
         Ffdd::Workshop::Car.all.each do |row|

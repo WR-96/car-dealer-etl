@@ -4,6 +4,15 @@ module Workshop
   class RepairsController < ApplicationController
     before_action :set_workshop_repair, only: %i[edit update destroy]
 
+    def load
+      Workshop::Repair.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Repair.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_repairs_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Repair.all.empty?
         Ffdd::Workshop::Repair.all.each do |row|

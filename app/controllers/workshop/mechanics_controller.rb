@@ -4,6 +4,15 @@ module Workshop
   class MechanicsController < ApplicationController
     before_action :set_workshop_mechanic, only: %i[edit update destroy]
 
+    def load
+      Workshop::Mechanic.all.reject(&:invalid?).each do |record|
+        Dwh::Workshop::Mechanic.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to workshop_mechanics_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Workshop::Mechanic.all.empty?
         Ffdd::Workshop::Mechanic.all.each do |row|
