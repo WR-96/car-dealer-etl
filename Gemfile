@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+gem 'activerecord-sqlserver-adapter', '~> 5.2'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'coffee-rails', '~> 4.2'
 gem 'date_validator', '~> 0.9.0'
@@ -20,6 +21,7 @@ gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 gem 'sass-rails', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
+gem 'tiny_tds', '~> 2.1', '>= 2.1.2'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 
