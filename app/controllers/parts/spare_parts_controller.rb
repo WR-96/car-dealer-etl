@@ -4,6 +4,15 @@ module Parts
   class SparePartsController < ApplicationController
     before_action :set_parts_spare_part, only: %i[edit update destroy]
 
+    def load
+      Parts::SparePart.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::SparePart.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_spare_parts_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::SparePart.all.empty?
         Ffdd::Parts::SparePart.all.each do |row|

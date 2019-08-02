@@ -4,6 +4,15 @@ module Parts
   class EmployeesController < ApplicationController
     before_action :set_parts_employee, only: %i[edit update destroy]
 
+    def load
+      Parts::Employee.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::Employee.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_employees_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::Employee.all.empty?
         Ffdd::Parts::Employee.all.each do |row|

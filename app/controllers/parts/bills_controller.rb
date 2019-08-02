@@ -4,6 +4,15 @@ module Parts
   class BillsController < ApplicationController
     before_action :set_parts_bill, only: %i[edit update destroy]
 
+    def load
+      Parts::Bill.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::Bill.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_bills_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::Bill.all.empty?
         Ffdd::Parts::Bill.all.each do |row|

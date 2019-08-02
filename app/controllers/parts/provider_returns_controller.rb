@@ -4,6 +4,15 @@ module Parts
   class ProviderReturnsController < ApplicationController
     before_action :set_parts_provider_return, only: %i[edit update destroy]
 
+    def load
+      Parts::ProviderReturn.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::ProviderReturn.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_provider_returns_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::ProviderReturn.all.empty?
         Ffdd::Parts::ProviderReturn.all.each do |row|

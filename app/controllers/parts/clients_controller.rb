@@ -4,6 +4,15 @@ module Parts
   class ClientsController < ApplicationController
     before_action :set_parts_client, only: %i[edit update destroy]
 
+    def load
+      Parts::Client.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::Client.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_clients_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::Client.all.empty?
         Ffdd::Parts::Client.all.each do |row|

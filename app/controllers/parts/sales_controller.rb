@@ -4,6 +4,15 @@ module Parts
   class SalesController < ApplicationController
     before_action :set_parts_sale, only: %i[edit update destroy]
 
+    def load
+      Parts::Sale.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::Sale.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_sales_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::Sale.all.empty?
         Ffdd::Parts::Sale.all.each do |row|

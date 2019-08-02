@@ -4,6 +4,15 @@ module Parts
   class SupplierOrdersController < ApplicationController
     before_action :set_parts_supplier_order, only: %i[edit update destroy]
 
+    def load
+      Parts::SupplierOrder.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::SupplierOrder.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_supplier_orders_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::SupplierOrder.all.empty?
         Ffdd::Parts::SupplierOrder.all.each do |row|

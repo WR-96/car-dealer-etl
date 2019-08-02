@@ -4,6 +4,15 @@ module Parts
   class RequisitionsController < ApplicationController
     before_action :set_parts_requisition, only: %i[edit update destroy]
 
+    def load
+      Parts::Requisition.all.reject(&:invalid?).each do |record|
+        Dwh::Parts::Requisition.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to parts_requisitions_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Parts::Requisition.all.empty?
         Ffdd::Parts::Requisition.all.each do |row|
