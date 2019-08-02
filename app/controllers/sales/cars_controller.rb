@@ -6,6 +6,15 @@ module Sales
   class CarsController < ApplicationController
     before_action :set_sales_car, only: %i[edit update destroy]
 
+    def load
+      Sales::Car.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::Car.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_cars_url, notice: 'Data sucessfully loaded to DHW'
+    end
+
     def extract
       if Sales::Car.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'cars.csv')

@@ -6,6 +6,15 @@ module Sales
   class TestDrivesController < ApplicationController
     before_action :set_sales_test_drive, only: %i[edit update destroy]
 
+    def load
+      Sales::TestDrive.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::TestDrive.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_test_drives_url, notice: 'Data successfully loaded to DHW'
+    end
+
     def extract
       if Sales::TestDrive.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'test_drives.csv')

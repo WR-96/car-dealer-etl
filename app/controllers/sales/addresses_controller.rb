@@ -6,6 +6,15 @@ module Sales
   class AddressesController < ApplicationController
     before_action :set_sales_address, only: %i[edit update destroy]
 
+    def load
+      Sales::Address.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::Address.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_addresses_url, notice: 'Data sucessfully loaded to DHW'
+    end
+
     def extract
       if Sales::Address.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'addresses.csv')

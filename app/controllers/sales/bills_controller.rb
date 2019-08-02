@@ -6,6 +6,15 @@ module Sales
   class BillsController < ApplicationController
     before_action :set_sales_bill, only: %i[edit update destroy]
 
+    def load
+      Sales::Bill.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::Bill.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_bills_url, notice: 'Data sucessfully loaded to DHW'
+    end
+
     def extract
       if Sales::Bill.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'bills.csv')

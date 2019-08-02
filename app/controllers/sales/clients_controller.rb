@@ -6,6 +6,15 @@ module Sales
   class ClientsController < ApplicationController
     before_action :set_sales_client, only: %i[edit update destroy]
 
+    def load
+      Sales::Client.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::Client.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_clients_url, notice: 'Data sucessfully loaded to DHW'
+    end
+
     def extract
       if Sales::Client.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'clients.csv')

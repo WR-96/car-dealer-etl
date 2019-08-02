@@ -6,6 +6,15 @@ module Sales
   class PaymentsController < ApplicationController
     before_action :set_sales_payment, only: %i[edit update destroy]
 
+    def load
+      Sales::Payment.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::Payment.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_payments_url, notice: 'Data sucessfully loaded to DHW'
+    end
+
     def extract
       if Sales::Payment.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'payments.csv')

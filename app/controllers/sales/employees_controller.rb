@@ -6,6 +6,15 @@ module Sales
   class EmployeesController < ApplicationController
     before_action :set_sales_employee, only: %i[edit update destroy]
 
+    def load
+      Sales::Employee.all.reject(&:invalid?).each do |record|
+        Dwh::Sales::Employee.create(record.attributes.except('id'))
+        record.destroy
+      end
+
+      redirect_to sales_employees_url, notice: 'Data sucessfully loaded to DHW'
+    end
+
     def extract
       if Sales::Employee.all.empty?
         file_path = File.join(Rails.root, 'app/assets/csv/sales', 'employees.csv')
