@@ -1,0 +1,12 @@
+= form_tag query_path, method: 'get' do
+  .form-row.align-items-center
+    .form-group.col-md-3
+      = label_tag :car_attr, 'Campo de la tabla "Cars"'
+      = select_tag :car_attr, options_for_select(@car.attributes.keys), class: 'form-control'
+    .form-group.col-md-3
+      = label_tag :piece_attr, 'Campo de la tabla "Pieces"'
+      = select_tag :piece_attr, options_for_select(@part.attributes.keys), class: 'form-control'
+    .form-group.col-md-3
+      = label_tag :provider_attr, 'Campo de la tabla "Providers"'
+      = select_tag :provider_attr, options_for_select(@provider.attributes.keys), class: 'form-control'
+    = submit_tag 'Enviar', class: 'btn btn-primary ml-3'

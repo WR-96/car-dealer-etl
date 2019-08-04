@@ -1,2 +1,12 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.erb
+.jumbotron
+  %h1 Consulta dinamica
+  %p.lead
+    Esta consulta permite seleccionar campos de tres tablas en tres sistemas distintos;
+    La tabla "Cars" del sistema "Sales", las tablas "Parts" del sistema "Workshop" y 
+    la tabla "Suppliers" del sistema "Workshop"
+
+.container-fluid
+  = render 'dynamic_query_form'
+
+.container.mt-3
+  = render 'dynamic_query_table'

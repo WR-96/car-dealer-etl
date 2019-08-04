@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get '/query', to: 'home#query'
   namespace :parts do
     get 'requisitions/load', to: 'requisitions#load'
     get 'requisitions/extract', to: 'requisitions#extract'

@@ -1,0 +1,23 @@
+.table.table-responsive{ style: 'height: 400px' }
+  %table.table-hover.table-bordered{'overflow-y': 'hidden'}
+    %thead.thead-light
+      %tr
+        - if @car_attr
+          %th= @car_attr
+        - else
+          %th Campo1
+        - if @piece_attr
+          %th= @piece_attr
+        - else
+          %th Campo 2
+        - if @provider_attr
+          %th= @provider_attr
+        - else
+          %th Campo 3
+
+    %tbody
+      - for x in 0..24 do
+        %tr
+          %td= @car_values[x]
+          %td= @piece_values[x]
+          %td= @provider_values[x]
